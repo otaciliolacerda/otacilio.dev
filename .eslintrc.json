@@ -3,7 +3,11 @@
   "settings": {
     "import/resolver": { "node": { "paths": ["node_modules", "."] } }
   },
-  "extends": ["plugin:react/recommended", "airbnb"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaFeatures": { "jsx": true },
     "ecmaVersion": 12,
