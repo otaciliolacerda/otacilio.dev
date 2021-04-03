@@ -1,8 +1,5 @@
 {
   "env": { "browser": true, "es2021": true },
-  "settings": {
-    "import/resolver": { "node": { "paths": ["node_modules", "."] } }
-  },
   "extends": ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaFeatures": { "jsx": true },
