@@ -35,3 +35,15 @@ yarn-error.log*
 
 # eslint
 .eslintcache
+
+# intellij
+.idea
+
+# yarn 2 (berry)
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
