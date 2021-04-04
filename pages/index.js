@@ -1,51 +1,43 @@
-import Head from 'next/head';
-import Image from 'next/image';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
 
-import { AwesomeButtonSocial } from 'react-awesome-button';
-import 'react-awesome-button/dist/styles.css';
+import Seo from 'components/Seo';
+import Bio from 'components/Bio';
+import Layout from 'components/Layout';
+import { getSortedPosts } from 'utils/posts';
 
-import styles from 'styles/index.module.css';
-
-function Index() {
+function Index({ posts }) {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Welcome</title>
-      </Head>
-
-      <div className={styles.card}>
-        <div className={styles.cardHeader}>
-          <Image alt="the author" src="/img/photo.png" width="180" height="180" />
-        </div>
-        <div className={styles.cardContent}>
-          <strong style={{ fontSize: '1.6rem' }}>Otacilio Lacerda</strong>
-          <strong style={{ fontSize: '1.2rem' }}>Fullstack Developer</strong>
-          <br />
-          <span style={{ textAlign: 'left' }}>
-            I am always looking for something new to learn. Currently interested in API Design and how to make the web a
-            better place.
-          </span>
-        </div>
-        <div className={styles.cardFooter}>
-          <AwesomeButtonSocial
-            icon
-            size="icon"
-            type="github"
-            href="https://github.com/otaciliolacerda"
-            target="_blank"
-          />
-          <AwesomeButtonSocial
-            icon
-            size="icon"
-            type="linkedin"
-            href="https://www.linkedin.com/in/otaciliolacerda"
-            target="_blank"
-          />
-          <AwesomeButtonSocial icon size="icon" type="twitter" href="https://twitter.com/otaciliofl" target="_blank" />
-        </div>
-      </div>
-    </div>
+    <Layout>
+      <Seo title="All posts" />
+      <Bio className="my-14" />
+      {posts.map(({ title, description, date, slug }) => (
+        <article key={slug}>
+          <header className="mb-2">
+            <h3 className="mb-2">
+              <Link href={{ pathname: '/post/[slug]', query: { slug } }}>
+                <a className="text-4xl font-bold text-yellow-600 font-display"> {title}</a>
+              </Link>
+            </h3>
+            <span className="text-sm">{date}</span>
+          </header>
+          <section>
+            <p className="mb-8 text-lg">{description}</p>
+          </section>
+        </article>
+      ))}
+    </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const posts = getSortedPosts();
+
+  return {
+    props: {
+      posts,
+    },
+  };
 }
 
 export default Index;
