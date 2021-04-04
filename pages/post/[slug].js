@@ -1,36 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown/with-html';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
 
 import Seo from 'components/Seo';
 import Bio from 'components/Bio';
-import Image from 'components/Image';
 import Layout from 'components/Layout';
+import CodeBlock from 'components/CodeBlock';
+import MarkdownImage from 'components/MarkdownImage';
+
 import { getPostBySlug, getPostsSlugs } from 'utils/posts';
-
-function CodeBlock({ language, value }) {
-  return (
-    <SyntaxHighlighter style={style} language={language}>
-      {value}
-    </SyntaxHighlighter>
-  );
-}
-
-function MarkdownImage({ alt, src }) {
-  return (
-    <Image
-      alt={alt}
-      src={require(`content/assets/${src}`)}
-      webpSrc={require(`content/assets/${src}?webp`)}
-      previewSrc={require(`content/assets/${src}?lqip`)}
-      className="w-full"
-    />
-  );
-}
 
 function Post({ title, description, date, content, nextPost, previousPost }) {
   return (
