@@ -14,7 +14,7 @@ function Bio({ className }) {
   return (
     <div className={clsx(`flex items-center`, className)}>
       <Image
-        className="flex-shrink-0 mb-0 mr-3 rounded-full w-14 h-14"
+        className="flex-shrink-0 mb-0 mr-3 rounded-full w-32 h-32"
         src={profileImagePng}
         webpSrc={profileImageWebp}
         previewSrc={profileImageLqip}
