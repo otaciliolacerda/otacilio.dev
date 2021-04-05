@@ -9,5 +9,3 @@ Coding is such a blissful activity.
 ```js
 console.log('Hello World!');
 ```
-
-![Test](test.png 'test title')

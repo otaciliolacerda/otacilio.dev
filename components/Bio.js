@@ -4,9 +4,7 @@ import clsx from 'clsx';
 import Image from 'components/Image';
 import { getSiteMetaData } from 'utils/helpers';
 
-import profileImagePng from 'content/assets/profile.png';
-import profileImageWebp from 'content/assets/profile.png?webp';
-import profileImageLqip from 'content/assets/profile.png?lqip';
+const profileImage = '/img/profile.png';
 
 function Bio({ className }) {
   const { author, social } = getSiteMetaData();
@@ -15,9 +13,9 @@ function Bio({ className }) {
     <div className={clsx(`flex items-center`, className)}>
       <Image
         className="flex-shrink-0 mb-0 mr-3 rounded-full w-32 h-32"
-        src={profileImagePng}
-        webpSrc={profileImageWebp}
-        previewSrc={profileImageLqip}
+        src={profileImage}
+        webpSrc={`${profileImage}?webp`}
+        previewSrc={`${profileImage}?lqip`}
         alt="Profile"
       />
 
