@@ -23,7 +23,6 @@ function Post({ title, description, date, content, nextPost, previousPost }) {
         </header>
         <ReactMarkdown
           className="mb-4 prose lg:prose-lg dark:prose-dark"
-          // allowDangerousHtml
           renderers={{
             code({ language, value }) {
               return (
