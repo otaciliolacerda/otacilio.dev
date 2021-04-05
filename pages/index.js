@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Seo from 'components/Seo';
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
-import { getSortedPosts } from 'utils/posts';
+import { getSortedBlogPosts } from 'utils/posts';
 
-function Index({ posts }) {
+function Blog({ posts }) {
   return (
     <Layout>
       <Seo title="All posts" />
@@ -15,7 +15,7 @@ function Index({ posts }) {
         <article key={slug}>
           <header className="mb-2">
             <h3 className="mb-2">
-              <Link href={{ pathname: '/post/[slug]', query: { slug } }}>
+              <Link href={{ pathname: '/blog/[slug]', query: { slug } }}>
                 <a className="text-4xl font-bold text-yellow-600 font-display"> {title}</a>
               </Link>
             </h3>
@@ -31,7 +31,7 @@ function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = getSortedPosts();
+  const posts = getSortedBlogPosts();
 
   return {
     props: {
@@ -40,4 +40,4 @@ export async function getStaticProps() {
   };
 }
 
-export default Index;
+export default Blog;

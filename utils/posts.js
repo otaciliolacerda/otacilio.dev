@@ -1,16 +1,11 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 
-const POSTS_FOLDER = `${process.cwd()}/content/posts`;
+const BLOG_DIR = `${process.cwd()}/content/blog`;
 
-export function getPostsFolders() {
-  // Get all posts folders located in `content/posts`
-  const postsFolders = fs.readdirSync(POSTS_FOLDER).map(folderName => ({
-    directory: folderName,
-    filename: `${folderName}.md`,
-  }));
-
-  return postsFolders;
+export function loadAllBlogPosts() {
+  // Each folder inside `content/blog` is a blog post. The folder name is the post id (slug)
+  return fs.readdirSync(BLOG_DIR).map(postName => postName);
 }
 
 // Get day in format: Month day, Year. e.g. April 19, 2020
@@ -21,25 +16,16 @@ function getFormattedDate(date) {
   return formattedDate;
 }
 
-export function getSortedPosts() {
-  const postFolders = getPostsFolders();
-
-  const posts = postFolders
-    .map(({ filename, directory }) => {
-      // Get raw content from file
-      const markdownWithMetadata = fs.readFileSync(`${POSTS_FOLDER}/${directory}/${filename}`).toString();
-
-      // Parse markdown, get data and content.
-      const { data, content } = matter(markdownWithMetadata);
-
-      // Remove .md file extension from post name
-      const slug = filename.replace('.md', '');
+export function getSortedBlogPosts() {
+  const posts = loadAllBlogPosts()
+    .map(post => {
+      const { data, content } = matter.read(`${BLOG_DIR}/${post}/index.md`);
 
       return {
         ...data,
         date: getFormattedDate(data.date),
         content,
-        slug,
+        slug: post,
       };
     })
     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -47,20 +33,12 @@ export function getSortedPosts() {
   return posts;
 }
 
-export function getPostsSlugs() {
-  const postFolders = getPostsFolders();
-
-  const paths = postFolders.map(({ filename }) => ({
-    params: {
-      slug: filename.replace('.md', ''),
-    },
-  }));
-
-  return paths;
+export function getBlogPostsSlugs() {
+  return loadAllBlogPosts().map(slug => ({ params: { slug } }));
 }
 
-export function getPostBySlug(slug) {
-  const posts = getSortedPosts();
+export function getBlogPostBySlug(slug) {
+  const posts = getSortedBlogPosts();
   const postIndex = posts.findIndex(({ slug: postSlug }) => postSlug === slug);
   return {
     ...posts[postIndex],

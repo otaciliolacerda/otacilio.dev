@@ -1,16 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown/with-html';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
 
 import Seo from 'components/Seo';
 import Bio from 'components/Bio';
+import Image from 'components/Image';
 import Layout from 'components/Layout';
-import CodeBlock from 'components/CodeBlock';
-import MarkdownImage from 'components/MarkdownImage';
 
-import { getPostBySlug, getPostsSlugs } from 'utils/posts';
+import { getBlogPostBySlug, getBlogPostsSlugs } from 'utils/posts';
 
-function Post({ title, description, date, content, nextPost, previousPost }) {
+function Post({ slug, title, description, date, content, nextPost, previousPost }) {
   return (
     <Layout>
       <Seo title={title} description={description} />
@@ -22,10 +25,30 @@ function Post({ title, description, date, content, nextPost, previousPost }) {
         </header>
         <ReactMarkdown
           className="mb-4 prose lg:prose-lg dark:prose-dark"
-          escapeHtml={false}
-          source={content}
-          renderers={{ code: CodeBlock, image: MarkdownImage }}
-        />
+          allowDangerousHtml
+          renderers={{
+            code({ language, value }) {
+              return (
+                <SyntaxHighlighter style={style} language={language}>
+                  {value}
+                </SyntaxHighlighter>
+              );
+            },
+            image({ alt, src }) {
+              return (
+                <Image
+                  alt={alt}
+                  src={require(`content/blog/${slug}/assets/${src}`).src}
+                  webpSrc={require(`content/blog/${slug}/assets/${src}?webp`).src}
+                  previewSrc={require(`content/blog/${slug}/assets/${src}?lqip`).src}
+                  className="w-full"
+                />
+              );
+            },
+          }}
+        >
+          {content}
+        </ReactMarkdown>
         <hr className="mt-4" />
         <footer>
           <Bio className="mt-8 mb-16" />
@@ -34,14 +57,14 @@ function Post({ title, description, date, content, nextPost, previousPost }) {
 
       <nav className="flex flex-wrap justify-between mb-10">
         {previousPost ? (
-          <Link href={{ pathname: '/post/[slug]', query: { slug: previousPost.slug } }}>
+          <Link href={{ pathname: '/blog/[slug]', query: { slug: previousPost.slug } }}>
             <a className="text-lg font-bold">← {previousPost.title}</a>
           </Link>
         ) : (
           <div />
         )}
         {nextPost ? (
-          <Link href={{ pathname: '/post/[slug]', query: { slug: nextPost.slug } }}>
+          <Link href={{ pathname: '/blog/[slug]', query: { slug: nextPost.slug } }}>
             <a className="text-lg font-bold">{nextPost.title} →</a>
           </Link>
         ) : (
@@ -54,13 +77,13 @@ function Post({ title, description, date, content, nextPost, previousPost }) {
 
 export async function getStaticPaths() {
   return {
-    paths: getPostsSlugs(),
+    paths: getBlogPostsSlugs(),
     fallback: false,
   };
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const postData = getPostBySlug(slug);
+  const postData = getBlogPostBySlug(slug);
 
   if (!postData.previousPost) {
     postData.previousPost = null;
