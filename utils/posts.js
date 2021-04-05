@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 const BLOG_DIR = `${process.cwd()}/content/blog`;
 
 export function loadAllBlogPosts() {
-  // Each folder inside `content/blog` is a blog post. The folder name is the post id (slug)
+  // Each file in `content/blog` is a blog post. The filename is the post id (slug)
   return fs.readdirSync(BLOG_DIR).map(postName => postName);
 }
 
@@ -19,13 +19,13 @@ function getFormattedDate(date) {
 export function getSortedBlogPosts() {
   const posts = loadAllBlogPosts()
     .map(post => {
-      const { data, content } = matter.read(`${BLOG_DIR}/${post}/index.md`);
+      const { data, content } = matter.read(`${BLOG_DIR}/${post}`);
 
       return {
         ...data,
         date: getFormattedDate(data.date),
         content,
-        slug: post,
+        slug: post.replace('.md', ''),
       };
     })
     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -34,7 +34,7 @@ export function getSortedBlogPosts() {
 }
 
 export function getBlogPostsSlugs() {
-  return loadAllBlogPosts().map(slug => ({ params: { slug } }));
+  return loadAllBlogPosts().map(slug => ({ params: { slug: slug.replace('.md', '') } }));
 }
 
 export function getBlogPostBySlug(slug) {

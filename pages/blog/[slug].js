@@ -11,7 +11,7 @@ import Layout from 'components/Layout';
 
 import { getBlogPostBySlug, getBlogPostsSlugs } from 'utils/posts';
 
-function Post({ slug, title, description, date, content, nextPost, previousPost }) {
+function Post({ title, description, date, content, nextPost, previousPost }) {
   return (
     <Layout>
       <Seo title={title} description={description} />
@@ -23,7 +23,7 @@ function Post({ slug, title, description, date, content, nextPost, previousPost 
         </header>
         <ReactMarkdown
           className="mb-4 prose lg:prose-lg dark:prose-dark"
-          allowDangerousHtml
+          // allowDangerousHtml
           renderers={{
             code({ language, value }) {
               return (
@@ -33,12 +33,13 @@ function Post({ slug, title, description, date, content, nextPost, previousPost 
               );
             },
             image({ alt, src }) {
+              const imgUrl = `/blog/${src}`;
               return (
                 <Image
                   alt={alt}
-                  src={require(`content/blog/${slug}/assets/${src}`).src}
-                  webpSrc={require(`content/blog/${slug}/assets/${src}?webp`).src}
-                  previewSrc={require(`content/blog/${slug}/assets/${src}?lqip`).src}
+                  src={imgUrl}
+                  webpSrc={`${imgUrl}?webp`}
+                  previewSrc={`${imgUrl}?lqip`}
                   className="w-full"
                 />
               );

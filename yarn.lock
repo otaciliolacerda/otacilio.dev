@@ -6804,7 +6804,6 @@ fsevents@~2.3.1:
     postcss: ^8.2.9
     prettier: ^2.2.1
     react: 17.0.2
-    react-awesome-button: ^6.5.1
     react-dom: 17.0.2
     react-markdown: ^5.0.3
     react-syntax-highlighter: ^15.4.3
@@ -7735,15 +7734,6 @@ fsevents@~2.3.1:
   peerDependencies:
     webpack: ^4.3.0
   checksum: 97d91a49a6f4f599e23d6de2bd027acc7bd7db28fceff5b7893bca3701e8a0edfcbfaaf9839f9bd5e546daacd8d6849db60c8214da9d8d80dc553263c30154c1
-  languageName: node
-  linkType: hard
-
-"react-awesome-button@npm:^6.5.1":
-  version: 6.5.1
-  resolution: "react-awesome-button@npm:6.5.1"
-  dependencies:
-    web-animation-club: ^0.6.0
-  checksum: d482eadc5392bf4f0ae43e74a04f65cec4df7e7f8cca74b3f774bfd1bbb2e2278e7ec90efb29946d1e3da5d01461e3b6f63a82687fbdeca49a9fd4d3090e64ca
   languageName: node
   linkType: hard
 
@@ -9888,13 +9878,6 @@ resolve@^2.0.0-next.3:
     glob-to-regexp: ^0.4.1
     graceful-fs: ^4.1.2
   checksum: 1aa185936b2e3ec29a41a65776f4e002da95206a14f5cca0856fbddf157f025dc29191598508082bab4cfc026e69ad8e7774f34680e9c479b5a25bbf9d9f1a1c
-  languageName: node
-  linkType: hard
-
-"web-animation-club@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "web-animation-club@npm:0.6.0"
-  checksum: 07eb4169b9225e6d241f95a680ea733cd896f4579c33d88c0e71211e16ae2dadae057a4c1c4378f7b3ffac753fa0b384654a1ce10a0dd2f62b7a515a25aead2a
   languageName: node
   linkType: hard
 

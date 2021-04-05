@@ -9,3 +9,5 @@ Coding is such a blissful activity.
 ```js
 console.log('Hello World!');
 ```
+
+![random shiba inu sticker to test image](hello-world/shiba.jpeg)
