@@ -3,20 +3,20 @@ import { useRouter } from 'next/router';
 
 import { getSiteMetaData } from 'utils/helpers';
 
-function Seo({ title, description = '', preview = '' }) {
+function Seo({ title, preview, description, type = 'website' }) {
   const router = useRouter();
   const siteMetadata = getSiteMetaData();
 
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
-  const metaPreview = `https://otacilio.dev/${router.asPath}/${preview || siteMetadata.preview || ''}`;
+  const metaPreview = `${siteMetadata.siteUrl}${router.asPath}/${preview || siteMetadata.preview || ''}`;
 
   return (
     <Head>
       <title>{metaTitle}</title>
       <meta name="description" content={metaDescription} />
 
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={type} />
       <meta property="og:title" content={metaTitle} />
       <meta property="og:image" content={`${metaPreview}`} />
       <meta property="og:description" content={metaDescription} />
