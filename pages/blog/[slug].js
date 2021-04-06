@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import ReactMarkdown from 'react-markdown/with-html';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
@@ -12,6 +14,8 @@ import Layout from 'components/Layout';
 import { getBlogPostBySlug, getBlogPostsSlugs } from 'utils/posts';
 
 function Post({ title, description, date, preview, content, nextPost, previousPost }) {
+  const router = useRouter();
+
   return (
     <Layout>
       <Seo title={title} description={description} preview={preview} />
@@ -32,7 +36,7 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
               );
             },
             image({ alt, src }) {
-              const imgUrl = `/blog/${src}`;
+              const imgUrl = `${router.asPath}/${src}`;
               return (
                 <Image
                   alt={alt}

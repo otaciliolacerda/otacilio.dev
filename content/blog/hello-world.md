@@ -2,7 +2,7 @@
 title: Hello World
 description: First post
 date: 2021-04-04
-preview: /hello-world/shiba.jpeg
+preview: shiba.jpeg
 ---
 
 Coding is such a blissful activity.
@@ -11,4 +11,4 @@ Coding is such a blissful activity.
 console.log('Hello World!');
 ```
 
-![random shiba inu sticker to test image](hello-world/shiba.jpeg)
+![random shiba inu sticker to test image](shiba.jpeg)
