@@ -11,10 +11,10 @@ import Layout from 'components/Layout';
 
 import { getBlogPostBySlug, getBlogPostsSlugs } from 'utils/posts';
 
-function Post({ title, description, date, content, nextPost, previousPost }) {
+function Post({ title, description, date, preview, content, nextPost, previousPost }) {
   return (
     <Layout>
-      <Seo title={title} description={description} />
+      <Seo title={title} description={description} preview={preview} />
 
       <article>
         <header className="mb-8">
