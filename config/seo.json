@@ -1,11 +1,12 @@
 {
   "siteMetadata": {
     "title": "automating",
+    "description": "Otacilio Lacerda personal blog",
+    "previewImage": "/img/profile.png",
     "author": {
       "name": "Otacilio Lacerda",
       "summary": "I work as a Fullstack developer. I have great interest in API Design and in how to make the web a better place."
     },
-    "description": "A blog created with Next.js and Tailwind.css",
     "siteUrl": "https://otacilio.dev/",
     "language": "en-US",
     "social": {
