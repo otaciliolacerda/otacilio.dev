@@ -9,7 +9,7 @@ import { getSortedBlogPosts } from 'utils/posts';
 function Blog({ posts }) {
   return (
     <Layout>
-      <Seo />
+      <Seo metaType="blog" />
       <Bio className="my-14" />
       {posts.map(({ title, description, date, slug }) => (
         <article key={slug}>

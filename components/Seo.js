@@ -10,7 +10,7 @@ function Seo({ title, preview, description, metaType = 'website' }) {
 
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
-  const metaPreview = path.join(siteMetadata.siteUrl, router.asPath, `${preview || siteMetadata.previewImage || ''}`);
+  const metaPreview = path.join(router.asPath, `${preview || siteMetadata.previewImage || ''}`);
 
   return (
     <Head>
