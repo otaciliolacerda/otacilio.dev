@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { getSiteMetaData } from 'utils/helpers';
 
-function Seo({ title, preview, description, type = 'website' }) {
+function Seo({ title, preview, description }) {
   const router = useRouter();
   const siteMetadata = getSiteMetaData();
 
@@ -17,14 +17,14 @@ function Seo({ title, preview, description, type = 'website' }) {
       <title>{metaTitle}</title>
       <meta name="description" content={metaDescription} />
 
-      <meta property="og:type" content={type} />
+      <meta property="og:type" content="website" />
       <meta property="og:title" content={metaTitle} />
-      <meta property="og:image" content={`${metaPreview}`} />
+      <meta property="og:image" content={metaPreview} />
       <meta property="og:description" content={metaDescription} />
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={metaTitle} />
-      <meta name="twitter:image" content={`${metaPreview}`} />
+      <meta name="twitter:image" content={metaPreview} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:creator" content={siteMetadata.social.twitter} />
 
