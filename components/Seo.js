@@ -1,3 +1,4 @@
+import path from 'path';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -9,7 +10,7 @@ function Seo({ title, preview, description, type = 'website' }) {
 
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
-  const metaPreview = `${siteMetadata.siteUrl}${router.asPath}/${preview || siteMetadata.preview || ''}`;
+  const metaPreview = path.join(siteMetadata.siteUrl, router.asPath, `${preview || siteMetadata.previewImage || ''}`);
 
   return (
     <Head>
