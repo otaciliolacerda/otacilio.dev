@@ -18,7 +18,7 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
 
   return (
     <Layout>
-      <Seo title={title} description={description} preview={preview} type="article" />
+      <Seo title={title} description={description} preview={preview} metaType="article" />
 
       <article>
         <header className="mb-8">
