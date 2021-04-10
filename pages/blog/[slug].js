@@ -37,15 +37,7 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
             },
             image({ alt, src }) {
               const imgUrl = `${router.asPath}/${src}`;
-              return (
-                <Image
-                  alt={alt}
-                  src={imgUrl}
-                  webpSrc={`${imgUrl}?webp`}
-                  previewSrc={`${imgUrl}?lqip`}
-                  className="w-full"
-                />
-              );
+              return <Image alt={alt} src={imgUrl} className="w-full" />;
             },
           }}
         >

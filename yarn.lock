@@ -3500,6 +3500,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"file-loader@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "file-loader@npm:6.2.0"
+  dependencies:
+    loader-utils: ^2.0.0
+    schema-utils: ^3.0.0
+  peerDependencies:
+    webpack: ^4.0.0 || ^5.0.0
+  checksum: 0f103418c072ec66c081a9908cd7824ee19905e18be16889cb050f5f373998afaf7ca4c2fd2df4cabf703a2cd526aefe59105930e3f8d266a5b35e6d5f5b3cf4
+  languageName: node
+  linkType: hard
+
 "file-type@npm:5.2.0, file-type@npm:^5.2.0":
   version: 5.2.0
   resolution: "file-type@npm:5.2.0"
@@ -4513,7 +4525,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"imagemin@npm:7.0.1":
+"imagemin@npm:7.0.1, imagemin@npm:^7.0.1":
   version: 7.0.1
   resolution: "imagemin@npm:7.0.1"
   dependencies:
@@ -6769,8 +6781,10 @@ fsevents@~2.3.1:
     eslint-plugin-prettier: ^3.3.1
     eslint-plugin-react: ^7.23.1
     eslint-plugin-react-hooks: ^4.2.0
+    file-loader: ^6.2.0
     gray-matter: ^4.0.2
     husky: ^6.0.0
+    imagemin: ^7.0.1
     imagemin-mozjpeg: ^9.0.0
     imagemin-optipng: ^8.0.0
     img-loader: ^3.0.2

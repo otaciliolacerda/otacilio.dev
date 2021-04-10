@@ -10,8 +10,11 @@ function Seo({ title, preview, description, metaType = 'website' }) {
 
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
-  const previewSrc = path.join(router.asPath, `${preview || siteMetadata.previewImage || ''}`);
 
+  let src = preview ? path.join(router.asPath, preview) : siteMetadata.previewImage;
+  src = src.charAt(0) === '/' ? src.substring(1) : src;
+
+  const previewSrc = require(`content/assets/${src}`).default;
   const metaPreview = `${siteMetadata.siteUrl}${previewSrc}`;
 
   return (

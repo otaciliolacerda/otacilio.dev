@@ -1,11 +1,14 @@
 import 'lazysizes';
 
-function Image({ alt, src, previewSrc, webpSrc, className }) {
+function Image({ alt, src, className }) {
+  // eslint-disable-next-line no-param-reassign
+  src = src.charAt(0) === '/' ? src.substring(1) : src;
+
   return (
     <picture className={className}>
-      <source type="image/webp" data-srcset={webpSrc} />
-      <source type="image/png" data-srcset={src} />
-      <img className={`lazyload blur ${className}`} alt={alt} src={previewSrc} />
+      <source type="image/webp" data-srcset={require(`content/assets/${src}?webp`).default} />
+      <source type="image/png" data-srcset={require(`content/assets/${src}`).default} />
+      <img className={`lazyload blur ${className}`} alt={alt} src={require(`content/assets/${src}?lqip`)} />
     </picture>
   );
 }
