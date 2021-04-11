@@ -4,6 +4,9 @@ function Image({ alt, src, className }) {
   // eslint-disable-next-line no-param-reassign
   src = src.charAt(0) === '/' ? src.substring(1) : src;
 
+  console.log(require(`content/assets/${src}`));
+  console.log(require(`content/assets/${src}`).default);
+
   return (
     <picture className={className}>
       <source type="image/webp" data-srcset={require(`content/assets/${src}?webp`).default} />
