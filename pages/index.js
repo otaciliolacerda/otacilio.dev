@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 
-import Seo from 'components/SEO';
+import SEO from 'components/SEO';
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
 import { getSortedBlogPosts } from 'utils/posts';
@@ -9,7 +9,7 @@ import { getSortedBlogPosts } from 'utils/posts';
 function Blog({ posts }) {
   return (
     <Layout>
-      <Seo metaType="blog" />
+      <SEO metaType="blog" />
       <Bio className="my-14" />
       {posts.map(({ title, description, date, slug }) => (
         <article key={slug}>
