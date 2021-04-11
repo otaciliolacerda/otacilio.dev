@@ -4,14 +4,17 @@ import { useRouter } from 'next/router';
 
 import { getSiteMetaData } from 'utils/helpers';
 
-function Seo({ title, preview, description, metaType = 'website' }) {
+function SEO({ title, preview, description, metaType = 'website' }) {
   const router = useRouter();
   const siteMetadata = getSiteMetaData();
 
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
-  const previewSrc = path.join(router.asPath, `${preview || siteMetadata.previewImage || ''}`);
 
+  let src = preview ? path.join(router.asPath, preview) : siteMetadata.previewImage;
+  src = src.charAt(0) === '/' ? src.substring(1) : src;
+
+  const previewSrc = require(`content/assets/${src}`).default;
   const metaPreview = `${siteMetadata.siteUrl}${previewSrc}`;
 
   return (
@@ -36,4 +39,4 @@ function Seo({ title, preview, description, metaType = 'website' }) {
   );
 }
 
-export default Seo;
+export default SEO;
