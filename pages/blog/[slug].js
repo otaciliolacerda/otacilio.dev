@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown/with-html';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
 
-import Seo from 'components/Seo';
+import SEO from 'components/SEO';
 import Bio from 'components/Bio';
 import Image from 'components/Image';
 import Layout from 'components/Layout';
@@ -18,7 +18,7 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
 
   return (
     <Layout>
-      <Seo title={title} description={description} preview={preview} metaType="article" />
+      <SEO title={title} description={description} preview={preview} metaType="article" />
 
       <article>
         <header className="mb-8">

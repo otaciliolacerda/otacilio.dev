@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 
-import Seo from 'components/Seo';
+import Seo from 'components/SEO';
 import Bio from 'components/Bio';
 import Layout from 'components/Layout';
 import { getSortedBlogPosts } from 'utils/posts';

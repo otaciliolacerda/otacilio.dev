@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { getSiteMetaData } from 'utils/helpers';
 
-function Seo({ title, preview, description, metaType = 'website' }) {
+function SEO({ title, preview, description, metaType = 'website' }) {
   const router = useRouter();
   const siteMetadata = getSiteMetaData();
 
@@ -39,4 +39,4 @@ function Seo({ title, preview, description, metaType = 'website' }) {
   );
 }
 
-export default Seo;
+export default SEO;

@@ -8,7 +8,7 @@ function Image({ alt, src, className }) {
     <picture className={className}>
       <source type="image/webp" data-srcset={require(`content/assets/${src}?webp`).default} />
       <source type="image/png" data-srcset={require(`content/assets/${src}`).default} />
-      <img className={`lazyload blur ${className}`} alt={alt} src={require(`content/assets/${src}?lqip`)} />
+      <img className={`lazyload blur ${className}`} alt={alt} src={require(`content/assets/${src}?trace`).trace} />
     </picture>
   );
 }
