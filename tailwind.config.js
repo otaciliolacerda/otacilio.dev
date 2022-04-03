@@ -19,13 +19,7 @@ const defaultSans = [
 const defaultSerif = ['Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'];
 
 module.exports = {
-  purge: {
-    mode: 'all',
-    content: ['./components/**/*.{js,ts,jsx,tsx,css}', './pages/**/*.{js,ts,jsx,tsx}'],
-    options: {
-      safelist: { deep: [/blur$/] },
-    },
-  },
+  content: ['./components/**/*.{js,ts,jsx,tsx,css}', './pages/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -110,9 +104,4 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/typography')],
-  variants: {
-    extend: {
-      typography: ['dark'],
-    },
-  },
 };
