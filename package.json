@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
+    "prettier": "prettier -w pages/**/* components/**/* utils/**/*",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -31,9 +32,10 @@
     "prettier": "^2.6.2",
     "react": "18.0.0",
     "react-dom": "18.0.0",
-    "react-markdown": "^5.0.3",
+    "react-markdown": "^6.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "react-toggle-dark-mode": "^1.0.4",
+    "rehype-raw": "5.1.0",
     "tailwindcss": "^3.0.23",
     "typeface-merriweather": "^1.1.13",
     "typeface-open-sans": "^1.1.13",
@@ -41,7 +43,8 @@
     "webp-loader": "^0.6.0"
   },
   "lint-staged": {
-    "*.js": "eslint --fix --cache"
+    "*.js": "eslint --fix --cache",
+    "*.js": "yarn prettier"
   },
   "devDependencies": {
     "eslint-config-next": "12.1.4"
