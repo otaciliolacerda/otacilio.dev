@@ -6120,14 +6120,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-themes@npm:^0.0.14":
-  version: 0.0.14
-  resolution: "next-themes@npm:0.0.14"
+"next-themes@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "next-themes@npm:0.1.1"
   peerDependencies:
-    next: "*"
+    next: ">=11.1.1"
     react: "*"
     react-dom: "*"
-  checksum: 4b9094fb55e6df275ddd1dc8ab2d0e3fe50615add6330c286b1769a8a584494489cf536fcad8b6dc7c3f7869caf3d7db27d271d79bd1b15c493c7cba71c7a497
+  checksum: 226f6af92f3ccccd23c21cd0605aee4fef3482fb8442957a8bae220051af587b63b9fa0b1c8c1c859a7f60b7c8380ebcec98adb3575c903611251917846215e4
   languageName: node
   linkType: hard
 
@@ -6572,7 +6572,7 @@ __metadata:
     lint-staged: ^12.3.7
     next: 12.1.4
     next-optimized-images: ^2.6.2
-    next-themes: ^0.0.14
+    next-themes: ^0.1.1
     postcss: ^8.4.12
     prettier: ^2.6.2
     react: 17.0.2
