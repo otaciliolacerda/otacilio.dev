@@ -8,6 +8,7 @@ function Image({ alt, src, className }) {
     <picture className={className}>
       <source type="image/webp" data-srcset={require(`content/assets/${src}?webp&url`)} />
       <source type="image/png" data-srcset={require(`content/assets/${src}?url`)} />
+      {/*eslint-disable-next-line @next/next/no-img-element*/}
       <img className={`lazyload ${className}`} alt={alt} src={require(`content/assets/${src}?trace`).trace} />
     </picture>
   );

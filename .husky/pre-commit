@@ -2,3 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 yarn lint-staged
+echo "Checking if build works..."
+yarn build >/dev/null

@@ -2,7 +2,8 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import ReactMarkdown from 'react-markdown/with-html';
+import rehypeRaw from 'rehype-raw';
+import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
 
@@ -26,16 +27,21 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
           <p className="text-sm">{date}</p>
         </header>
         <ReactMarkdown
-          className="mb-4 prose lg:prose-lg dark:prose-dark"
-          renderers={{
-            code({ language, value }) {
-              return (
-                <SyntaxHighlighter style={style} language={language}>
-                  {value}
+          // className="dark:prose-dark"
+          rehypePlugins={[rehypeRaw]}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || '');
+
+              return !inline && match ? (
+                <SyntaxHighlighter style={style} language={match[1]}>
+                  {children}
                 </SyntaxHighlighter>
+              ) : (
+                <code className={className}>{children}</code>
               );
             },
-            image({ alt, src }) {
+            img({ alt, src }) {
               const imgUrl = `${router.asPath}/${src}`;
               return <Image alt={alt} src={imgUrl} className="w-full" />;
             },
