@@ -1,7 +1,9 @@
+'use client';
+
 import clsx from 'clsx';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
-import { useRouter } from 'next/router';
 import { useSyncExternalStore } from 'react';
 import { getSiteMetaData } from 'utils/helpers';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
@@ -11,7 +13,7 @@ const subscribeToHydration = () => () => {};
 
 function Header() {
   const { setTheme, resolvedTheme } = useTheme();
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const mounted = useSyncExternalStore(
     subscribeToHydration,
     () => true,
