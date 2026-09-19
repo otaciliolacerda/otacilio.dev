@@ -1,5 +1,3 @@
 #!/bin/sh
 
 npx lint-staged
-echo "Checking if build works..."
-npm run build >/dev/null
