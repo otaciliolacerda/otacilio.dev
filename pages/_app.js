@@ -1,9 +1,8 @@
 import { ThemeProvider } from 'next-themes';
 
+import '@fontsource-variable/merriweather';
+import '@fontsource-variable/open-sans';
 import 'styles/main.css';
-
-import 'typeface-open-sans';
-import 'typeface-merriweather';
 
 export default function MyApp({ Component, pageProps }) {
   return (

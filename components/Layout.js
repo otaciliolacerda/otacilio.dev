@@ -2,18 +2,21 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 import { getSiteMetaData } from 'utils/helpers';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 
 const { title } = getSiteMetaData();
+const subscribeToHydration = () => () => {};
 
 function Header() {
   const { setTheme, resolvedTheme } = useTheme();
   const { pathname } = useRouter();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useSyncExternalStore(
+    subscribeToHydration,
+    () => true,
+    () => false
+  );
 
   const toggleDarkMode = checked => {
     const isDarkMode = checked;
@@ -42,7 +45,11 @@ function LargeTitle() {
   return (
     <h1>
       <Link
-        className={clsx('text-3xl font-black leading-none text-black no-underline font-display', 'sm:text-5xl', 'dark:text-white')}
+        className={clsx(
+          'text-3xl font-black leading-none text-black no-underline font-display',
+          'sm:text-5xl',
+          'dark:text-white'
+        )}
         href="/"
       >
         {title}

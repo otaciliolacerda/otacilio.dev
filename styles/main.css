@@ -1,12 +1,45 @@
-@import "./base.css";
-@import "./components.css";
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-neon-orange: #f92300;
+  --font-display:
+    'Open Sans Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-body: 'Merriweather Variable', Georgia, Cambria, 'Times New Roman', Times, serif;
+  --text-7xl: 4.5rem;
+  --spacing-14: 3.375rem;
+}
 
 @layer base {
+  a:hover {
+    @apply underline;
+  }
+
+  span,
+  p {
+    @apply font-light;
+  }
+
   a {
     @apply text-neon-orange dark:text-yellow-500;
+  }
+}
+
+@layer components {
+  .blur {
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    transition:
+      filter 500ms ease-in,
+      -webkit-filter 500ms ease-in;
+  }
+
+  .blur.lazyloaded {
+    -webkit-filter: blur(0);
+    filter: blur(0);
   }
 }

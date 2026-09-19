@@ -11,9 +11,7 @@ function NotFound() {
         <h1 className="text-6xl m-5 text-center">Sorry</h1>
         <h3 className="text-4xl m-5 text-center">I could not find this page</h3>
         <p className="text-lg font-bold w-full text-center">
-          <Link href="/">
-            Back to Home Page
-          </Link>
+          <Link href="/">Back to Home Page</Link>
         </p>
       </div>
     </Layout>
