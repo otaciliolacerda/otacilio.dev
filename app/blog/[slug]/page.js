@@ -1,32 +1,74 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { notFound } from 'next/navigation';
 
 import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
 
-import SEO from 'components/SEO';
 import Bio from 'components/Bio';
 import Image from 'components/Image';
 import Layout from 'components/Layout';
-
+import { getSiteMetaData } from 'utils/helpers';
 import { getBlogPostBySlug, getBlogPostsSlugs } from 'utils/posts';
 
-function Post({ title, description, date, preview, content, nextPost, previousPost }) {
-  const router = useRouter();
+const siteMetadata = getSiteMetaData();
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return getBlogPostsSlugs();
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
+
+  if (!post) {
+    return {};
+  }
+
+  const previewImage = post.preview
+    ? `/assets/blog/${post.slug}/${post.preview}`
+    : `/assets/${siteMetadata.previewImage.replace(/^\//, '')}`;
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.description,
+      images: [previewImage],
+    },
+    twitter: {
+      card: 'summary',
+      title: post.title,
+      description: post.description,
+      creator: siteMetadata.social.twitter,
+      images: [previewImage],
+    },
+  };
+}
+
+async function BlogPostPage({ params }) {
+  const { slug } = await params;
+  const post = getBlogPostBySlug(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const { title, date, content, nextPost, previousPost } = post;
 
   return (
     <Layout>
-      <SEO title={title} description={description} preview={preview} metaType="article" />
-
       <article>
         <header className="mb-8">
           <h1 className="mb-2 text-6xl font-black leading-none font-display">{title}</h1>
           <p className="text-sm">{date}</p>
         </header>
         <ReactMarkdown
-          // className="dark:prose-dark"
           rehypePlugins={[rehypeRaw]}
           components={{
             code({ className, children }) {
@@ -41,8 +83,7 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
               );
             },
             img({ alt, src }) {
-              const imgUrl = `${router.asPath}/${src}`;
-              return <Image alt={alt} src={imgUrl} className="w-full" />;
+              return <Image alt={alt} src={`blog/${slug}/${src}`} className="w-full" />;
             },
           }}
         >
@@ -56,14 +97,14 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
 
       <nav className="flex flex-wrap justify-between mb-10">
         {previousPost ? (
-          <Link className="text-lg font-bold" href={{ pathname: '/blog/[slug]', query: { slug: previousPost.slug } }}>
+          <Link className="text-lg font-bold" href={`/blog/${previousPost.slug}`}>
             ← {previousPost.title}
           </Link>
         ) : (
           <div />
         )}
         {nextPost ? (
-          <Link className="text-lg font-bold" href={{ pathname: '/blog/[slug]', query: { slug: nextPost.slug } }}>
+          <Link className="text-lg font-bold" href={`/blog/${nextPost.slug}`}>
             {nextPost.title} →
           </Link>
         ) : (
@@ -74,25 +115,4 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
   );
 }
 
-export async function getStaticPaths() {
-  return {
-    paths: getBlogPostsSlugs(),
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params: { slug } }) {
-  const postData = getBlogPostBySlug(slug);
-
-  if (!postData.previousPost) {
-    postData.previousPost = null;
-  }
-
-  if (!postData.nextPost) {
-    postData.nextPost = null;
-  }
-
-  return { props: postData };
-}
-
-export default Post;
+export default BlogPostPage;

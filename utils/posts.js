@@ -34,15 +34,20 @@ export function getSortedBlogPosts() {
 }
 
 export function getBlogPostsSlugs() {
-  return loadAllBlogPosts().map(slug => ({ params: { slug: slug.replace('.md', '') } }));
+  return loadAllBlogPosts().map(slug => ({ slug: slug.replace('.md', '') }));
 }
 
 export function getBlogPostBySlug(slug) {
   const posts = getSortedBlogPosts();
   const postIndex = posts.findIndex(({ slug: postSlug }) => postSlug === slug);
+
+  if (postIndex === -1) {
+    return null;
+  }
+
   return {
     ...posts[postIndex],
-    previousPost: posts[postIndex + 1],
-    nextPost: posts[postIndex - 1],
+    previousPost: posts[postIndex + 1] ?? null,
+    nextPost: posts[postIndex - 1] ?? null,
   };
 }
