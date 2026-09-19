@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-import rehypeRaw from 'rehype-raw';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/dracula';
@@ -35,6 +34,9 @@ export async function generateMetadata({ params }) {
   return {
     title: post.title,
     description: post.description,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
     openGraph: {
       type: 'article',
       title: post.title,
@@ -69,7 +71,6 @@ async function BlogPostPage({ params }) {
           <p className="text-sm">{date}</p>
         </header>
         <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
           components={{
             code({ className, children }) {
               const match = /language-(\w+)/.exec(className || '');

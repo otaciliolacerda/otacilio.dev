@@ -10,15 +10,19 @@ function Image({ alt, src, className }) {
   const normalizedSrc = src.replace(/^\//, '');
   const imageDimensions = dimensions[normalizedSrc];
 
+  if (!imageDimensions) {
+    throw new Error(`Missing image dimensions for ${normalizedSrc}. Add them to components/Image.js.`);
+  }
+
   return (
     <img
       alt={alt}
       className={className}
       decoding="async"
-      height={imageDimensions?.height}
+      height={imageDimensions.height}
       loading="lazy"
       src={`/assets/${normalizedSrc}`}
-      width={imageDimensions?.width}
+      width={imageDimensions.width}
     />
   );
 }
