@@ -20,15 +20,24 @@ export function getSortedBlogPosts() {
   const posts = loadAllBlogPosts()
     .map(post => {
       const { data, content } = matter.read(`${BLOG_DIR}/${post}`);
+      const publishedAt = new Date(data.date);
+
+      if (Number.isNaN(publishedAt.valueOf())) {
+        throw new Error(`Invalid publication date in ${post}`);
+      }
 
       return {
-        ...data,
-        date: getFormattedDate(data.date),
-        content,
-        slug: post.replace('.md', ''),
+        post: {
+          ...data,
+          date: getFormattedDate(publishedAt),
+          content,
+          slug: post.replace('.md', ''),
+        },
+        publishedAt,
       };
     })
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
+    .sort((a, b) => b.publishedAt - a.publishedAt)
+    .map(({ post }) => post);
 
   return posts;
 }
