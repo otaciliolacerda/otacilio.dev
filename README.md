@@ -31,3 +31,5 @@ and theme support. Routes live alongside it:
 ## Writing posts
 
 Write posts in `content/blog/<slug>.md`. Put a post's images in `public/assets/blog/<slug>/` and reference them by filename in the Markdown. Site-wide images live in `public/assets/`.
+
+For every new image, add its pixel width and height to the `dimensions` map in `components/Image.js`. The build fails when an image is not registered, which prevents layout shifts from missing image dimensions.
