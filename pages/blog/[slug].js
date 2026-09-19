@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -30,10 +29,10 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
           // className="dark:prose-dark"
           rehypePlugins={[rehypeRaw]}
           components={{
-            code({ node, inline, className, children, ...props }) {
+            code({ className, children }) {
               const match = /language-(\w+)/.exec(className || '');
 
-              return !inline && match ? (
+              return match ? (
                 <SyntaxHighlighter style={style} language={match[1]}>
                   {children}
                 </SyntaxHighlighter>
@@ -57,15 +56,15 @@ function Post({ title, description, date, preview, content, nextPost, previousPo
 
       <nav className="flex flex-wrap justify-between mb-10">
         {previousPost ? (
-          <Link href={{ pathname: '/blog/[slug]', query: { slug: previousPost.slug } }}>
-            <a className="text-lg font-bold">← {previousPost.title}</a>
+          <Link className="text-lg font-bold" href={{ pathname: '/blog/[slug]', query: { slug: previousPost.slug } }}>
+            ← {previousPost.title}
           </Link>
         ) : (
           <div />
         )}
         {nextPost ? (
-          <Link href={{ pathname: '/blog/[slug]', query: { slug: nextPost.slug } }}>
-            <a className="text-lg font-bold">{nextPost.title} →</a>
+          <Link className="text-lg font-bold" href={{ pathname: '/blog/[slug]', query: { slug: nextPost.slug } }}>
+            {nextPost.title} →
           </Link>
         ) : (
           <div />

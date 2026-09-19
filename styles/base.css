@@ -1,8 +1,0 @@
-a:hover {
-  @apply underline;
-}
-
-span,
-p {
-  @apply font-light;
-}

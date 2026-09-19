@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import clsx from 'clsx';
 
 import Image from 'components/Image';

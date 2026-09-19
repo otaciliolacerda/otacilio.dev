@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 
 import SEO from 'components/SEO';
@@ -15,8 +14,11 @@ function Blog({ posts }) {
         <article key={slug}>
           <header className="mb-2">
             <h3 className="mb-2">
-              <Link href={{ pathname: '/blog/[slug]', query: { slug } }}>
-                <a className="text-4xl font-bold text-yellow-600 font-display"> {title}</a>
+              <Link
+                className="text-4xl font-bold text-yellow-600 font-display"
+                href={{ pathname: '/blog/[slug]', query: { slug } }}
+              >
+                {title}
               </Link>
             </h3>
             <span className="text-sm">{date}</span>

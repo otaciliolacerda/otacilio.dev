@@ -1,15 +1,11 @@
-import withOptimizedImages from "next-optimized-images";
-
 /**
  * @type {import("next").NextConfig}
  */
-const nextConfig = withOptimizedImages({
-  images: {
-    disableStaticImages: true
+const nextConfig = {
+  reactStrictMode: true,
+  turbopack: {
+    root: process.cwd(),
   },
-  removeOriginalExtension: false,
-  optimizeImagesInDev: true,
-  reactStrictMode: true
-});
+};
 
 export default nextConfig;

@@ -1,4 +1,3 @@
-import path from 'path';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
@@ -11,11 +10,9 @@ function SEO({ title, preview, description, metaType = 'website' }) {
   const metaTitle = title || siteMetadata.title;
   const metaDescription = description || siteMetadata.description;
 
-  let src = preview ? path.join(router.asPath, preview) : siteMetadata.previewImage;
-  src = src.charAt(0) === '/' ? src.substring(1) : src;
-
-  const previewSrc = require(`content/assets/${src}?url`);
-  const metaPreview = `${siteMetadata.siteUrl}${previewSrc}`;
+  const src = preview ? `${router.asPath}/${preview}` : siteMetadata.previewImage;
+  const normalizedSrc = src.replace(/^\//, '');
+  const metaPreview = `${siteMetadata.siteUrl}/assets/${normalizedSrc}`;
 
   return (
     <Head>

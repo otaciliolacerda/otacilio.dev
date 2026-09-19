@@ -1,16 +1,25 @@
-import 'lazysizes';
+/* eslint-disable @next/next/no-img-element */
+
+const dimensions = {
+  '404.png': { width: 860, height: 923 },
+  'blog/profile.png': { width: 269, height: 269 },
+  'blog/hello-world/shiba.jpeg': { width: 921, height: 614 },
+};
 
 function Image({ alt, src, className }) {
-  // eslint-disable-next-line no-param-reassign
-  src = src.charAt(0) === '/' ? src.substring(1) : src;
+  const normalizedSrc = src.replace(/^\//, '');
+  const imageDimensions = dimensions[normalizedSrc];
 
   return (
-    <picture className={className}>
-      <source type="image/webp" data-srcset={require(`content/assets/${src}?webp&url`)} />
-      <source type="image/png" data-srcset={require(`content/assets/${src}?url`)} />
-      {/*eslint-disable-next-line @next/next/no-img-element*/}
-      <img className={`lazyload ${className}`} alt={alt} src={require(`content/assets/${src}?trace`).trace} />
-    </picture>
+    <img
+      alt={alt}
+      className={className}
+      decoding="async"
+      height={imageDimensions?.height}
+      loading="lazy"
+      src={`/assets/${normalizedSrc}`}
+      width={imageDimensions?.width}
+    />
   );
 }
 
