@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 
 import Image from 'components/Image';
@@ -13,7 +12,7 @@ function NotFound() {
         <h3 className="text-4xl m-5 text-center">I could not find this page</h3>
         <p className="text-lg font-bold w-full text-center">
           <Link href="/">
-            <a>Back to Home Page</a>
+            Back to Home Page
           </Link>
         </p>
       </div>

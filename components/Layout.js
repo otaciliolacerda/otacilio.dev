@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
@@ -42,16 +41,11 @@ function Header() {
 function LargeTitle() {
   return (
     <h1>
-      <Link href="/">
-        <a
-          className={clsx(
-            'text-3xl font-black leading-none text-black no-underline font-display',
-            'sm:text-5xl',
-            'dark:text-white'
-          )}
-        >
-          {title}
-        </a>
+      <Link
+        className={clsx('text-3xl font-black leading-none text-black no-underline font-display', 'sm:text-5xl', 'dark:text-white')}
+        href="/"
+      >
+        {title}
       </Link>
     </h1>
   );
@@ -60,8 +54,8 @@ function LargeTitle() {
 function SmallTitle() {
   return (
     <h1>
-      <Link href="/">
-        <a className={clsx('text-2xl font-black text-black no-underline font-display', 'dark:text-white')}>{title}</a>
+      <Link className={clsx('text-2xl font-black text-black no-underline font-display', 'dark:text-white')} href="/">
+        {title}
       </Link>
     </h1>
   );
