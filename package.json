@@ -2,6 +2,7 @@
   "name": "otacilio.dev",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "npm@11.19.0",
   "engines": {
     "node": ">=24.21.0 <25"
   },
@@ -46,8 +47,10 @@
     "webp-loader": "^0.6.0"
   },
   "lint-staged": {
-    "*.js": "eslint --fix --cache",
-    "*.js": "yarn prettier"
+    "*.js": [
+      "eslint --fix --cache",
+      "prettier --write"
+    ]
   },
   "devDependencies": {
     "eslint-config-next": "12.1.4"

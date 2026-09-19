@@ -38,12 +38,3 @@ yarn-error.log*
 
 # intellij
 .idea
-
-# yarn 2 (berry)
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
